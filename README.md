@@ -133,3 +133,47 @@ and a new migration file `2_deploy_contracts.js`
     Saving successful migration to network...
       ... 0xb84e7a12b8a46773f8a0c3e264e38c7660e07bd50048f6257acc8a37a29b20ab
     Saving artifacts...
+
+
+### Starting `truffle develop`
+
+Enter the development console by running `truffle develop`
+
+    root@eth1:~/TUTORIALS/3_debug# truffle develop
+    Truffle Develop started at http://127.0.0.1:9545/
+
+    Accounts:
+    (0) 0x627306090abab3a6e1400e9345bc60c78a8bef57
+    ...
+
+    Private Keys:
+    (0) c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3
+    ...
+
+    Mnemonic: candy maple cake sugar pudding cream honey rich smooth crumble sweet treat
+
+    ⚠️  Important ⚠️  : This mnemonic was created for you by Truffle. It is not secure.
+    Ensure you do not use it on production blockchains, or else you risk losing funds.
+
+    truffle(develop)>
+
+Then run `migrate` inside the console
+
+    truffle(develop)> migrate
+    Using network 'develop'.
+
+    Running migration: 1_initial_migration.js
+      Deploying Migrations...
+      ... 0x9b53b8064c1d7e5494a4fc30a7ef0bfd940adaf22fcb54bc2893644ccc074381
+      Migrations: 0x8cdaf0cd259887258bc13a92c0a6da92698644c0
+    Saving successful migration to network...
+      ... 0xd7bc86d31bee32fa3988f1c1eabce403a1b5d570340a3a9cdba53a472ee8c956
+    Saving artifacts...
+    Running migration: 2_deploy_contracts.js
+      Deploying SimpleStorage...
+      ... 0x8b59475fccf535055d764bb26f081ba6823a4e67b758c6a18d440f5d2ec72313
+      SimpleStorage: 0x345ca3e014aaf5dca488057592ee47305d9b3e10
+    Saving successful migration to network...
+      ... 0xf36163615f41ef7ed8f4a8f192149a0bf633fe1a2398ce001bf44c43dc7bdda0
+    Saving artifacts...
+    truffle(develop)>
