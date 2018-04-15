@@ -105,3 +105,10 @@ and a new migration file `2_deploy_contracts.js`
     module.exports = function(deployer) {
       deployer.deploy(SimpleStorage);
     };
+
+
+### Running `truffle compile`
+
+    root@eth1:~/TUTORIALS/3_debug# truffle compile
+    Compiling ./contracts/SimpleStorage.sol...
+    Writing artifacts to ./build/contracts
