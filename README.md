@@ -229,3 +229,99 @@ and get the storage again, yielding 4
 
     truffle(develop)> SimpleStorage.deployed().then(f_get).then(f_val)
     4
+
+### Debugging the smart contract
+
+Above we got the transaction id (`tx` and `transactionHash`). We can use this to launch
+the debugger
+
+    debug 0xd7ff6d16d4c522f8837dd3fd4ae4d52d0d6243eb5e86a1064ea56d7937c2c27d
+
+yielding
+
+    truffle(develop)> debug 0xd7ff6d16d4c522f8837dd3fd4ae4d52d0d6243eb5e86a1064ea56d7937c2c27d
+    Compiling ./contracts/Migrations.sol...
+    Compiling ./contracts/SimpleStorage.sol...
+
+    Gathering transaction data...
+
+    Addresses affected:
+     0x345ca3e014aaf5dca488057592ee47305d9b3e10 - SimpleStorage
+
+    Commands:
+    (enter) last command entered (step next)
+    (o) step over, (i) step into, (u) step out, (n) step next
+    (;) step instruction, (p) print instruction, (h) print this help, (q) quit
+    (b) toggle breakpoint, (c) continue until breakpoint
+    (+) add watch expression (`+:<expr>`), (-) remove watch expression (-:<expr>)
+    (?) list existing watch expressions
+    (v) print variables and values, (:) evaluate expression - see `v`
+
+
+    SimpleStorage.sol:
+
+    1: pragma solidity ^0.4.17;
+    2:
+    3: contract SimpleStorage {
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+    debug(develop:0xd7ff6d16...)>
+
+Here we simply step through pressing Enter, yielding
+
+    SimpleStorage.sol:
+
+    1: pragma solidity ^0.4.17;
+    2:
+    3: contract SimpleStorage {
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+    debug(develop:0xd7ff6d16...)>
+
+    SimpleStorage.sol:
+
+    4:   uint myVariable;
+    5:
+    6:   function set(uint x) public {
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    debug(develop:0xd7ff6d16...)>
+
+    SimpleStorage.sol:
+
+    5:
+    6:   function set(uint x) public {
+    7:     myVariable = x;
+                        ^
+
+    debug(develop:0xd7ff6d16...)>
+
+    SimpleStorage.sol:
+
+    5:
+    6:   function set(uint x) public {
+    7:     myVariable = x;
+           ^^^^^^^^^^     
+
+    debug(develop:0xd7ff6d16...)>
+
+    SimpleStorage.sol:
+
+    5:
+    6:   function set(uint x) public {
+    7:     myVariable = x;
+           ^^^^^^^^^^^^^^
+
+    debug(develop:0xd7ff6d16...)>
+
+    SimpleStorage.sol:
+
+    4:   uint myVariable;
+    5:
+    6:   function set(uint x) public {
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    debug(develop:0xd7ff6d16...)>
+
+    Transaction completed successfully.
+    truffle(develop)>
