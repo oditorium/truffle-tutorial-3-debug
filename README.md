@@ -22,3 +22,10 @@ tutorial progresses, and you can follow the progress in this file below._
     Compile:        truffle compile
     Migrate:        truffle migrate
     Test contracts: truffle test
+
+
+### Running `truffle compile`
+
+    root@eth1:~/TUTORIALS/3_debug# truffle compile
+    Compiling ./contracts/Migrations.sol...
+    Writing artifacts to ./build/contracts
