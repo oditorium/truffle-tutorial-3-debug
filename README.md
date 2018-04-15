@@ -79,3 +79,29 @@ The ganache window shows
     Listening on localhost:8545
     net_version
     eth_accounts
+
+### Adding the SimpleStorage smart contract
+
+Adding a new contract file `SimpleStorage.sol`
+
+    pragma solidity ^0.4.17;
+
+    contract SimpleStorage {
+      uint myVariable;
+
+      function set(uint x) public {
+        myVariable = x;
+      }
+
+      function get() constant public returns (uint) {
+        return myVariable;
+      }
+    }
+
+and a new migration file `2_deploy_contracts.js`
+
+    var SimpleStorage = artifacts.require("SimpleStorage");
+
+    module.exports = function(deployer) {
+      deployer.deploy(SimpleStorage);
+    };
