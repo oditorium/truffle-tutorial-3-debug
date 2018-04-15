@@ -112,3 +112,24 @@ and a new migration file `2_deploy_contracts.js`
     root@eth1:~/TUTORIALS/3_debug# truffle compile
     Compiling ./contracts/SimpleStorage.sol...
     Writing artifacts to ./build/contracts
+
+
+### Running `truffle deploy`
+
+    root@eth1:~/TUTORIALS/3_debug# truffle deploy
+    Using network 'development'.
+
+    Running migration: 1_initial_migration.js
+      Deploying Migrations...
+      ... 0x9b53b8064c1d7e5494a4fc30a7ef0bfd940adaf22fcb54bc2893644ccc074381
+      Migrations: 0x60a5851d25076c3d0fd064302d92937cbb33851a
+    Saving successful migration to network...
+      ... 0x0421336c69e018dc382929a6ae7ebb48ea12ebdc4fb072555a9ca6c2fdc6d961
+    Saving artifacts...
+    Running migration: 2_deploy_contracts.js
+      Deploying SimpleStorage...
+      ... 0x8b59475fccf535055d764bb26f081ba6823a4e67b758c6a18d440f5d2ec72313
+      SimpleStorage: 0x81dd6c970d6e368ce06835bce8fd4011fdd4d289
+    Saving successful migration to network...
+      ... 0xb84e7a12b8a46773f8a0c3e264e38c7660e07bd50048f6257acc8a37a29b20ab
+    Saving artifacts...
