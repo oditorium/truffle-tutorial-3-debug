@@ -135,7 +135,7 @@ and a new migration file `2_deploy_contracts.js`
     Saving artifacts...
 
 
-### Starting `truffle develop`
+### Starting the development console
 
 Enter the development console by running `truffle develop`
 
@@ -177,3 +177,55 @@ Then run `migrate` inside the console
       ... 0xf36163615f41ef7ed8f4a8f192149a0bf633fe1a2398ce001bf44c43dc7bdda0
     Saving artifacts...
     truffle(develop)>
+
+
+### Interacting with the smart contract
+
+Inside the console we run
+
+    SimpleStorage.deployed()
+        .then(  function(i){return i.get.call();}  )
+        .then(  function(v){return v.toNumber();}  );
+
+which, in a single line, looks like this:
+
+    SimpleStorage.deployed().then(function(i){return i.get.call();}).then(function(v){return v.toNumber()});
+
+This yields 0 as the variable is initialised to zero
+
+    truffle(develop)> SimpleStorage.deployed().then(function(i){return i.get.call();}).then(function(v){return v.toNumber()});
+    0
+
+We can make this a bit clearer by using variables `f_get` and `f_val` for the functions
+
+    truffle(develop)> var f_get = function(i){return i.get.call();}
+    undefined
+    truffle(develop)> var f_val = function(v){return v.toNumber();}
+    undefined
+    truffle(develop)> SimpleStorage.deployed().then(f_get).then(f_val)
+    0
+
+We now set the storage to the value 4
+
+    truffle(develop)> var f_set_4 = function(instance){return instance.set(4);}
+    undefined
+    truffle(develop)> SimpleStorage.deployed().then(f_set_4)
+    { tx: '0xd7ff6d16d4c522f8837dd3fd4ae4d52d0d6243eb5e86a1064ea56d7937c2c27d',
+      receipt:
+       { transactionHash: '0xd7ff6d16d4c522f8837dd3fd4ae4d52d0d6243eb5e86a1064ea56d7937c2c27d',
+         transactionIndex: 0,
+         blockHash: '0x04b8a7c3e4971920e3766ef22fa84ebeaa90037656d9a6d1dca69c984060d85e',
+         blockNumber: 6,
+         gasUsed: 26642,
+         cumulativeGasUsed: 26642,
+         contractAddress: null,
+         logs: [],
+         status: '0x01',
+         logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000' },
+      logs: []
+    }
+
+and get the storage again, yielding 4
+
+    truffle(develop)> SimpleStorage.deployed().then(f_get).then(f_val)
+    4
